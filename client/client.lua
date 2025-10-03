@@ -18,3 +18,11 @@ function HideTextUI()
     })
     textUIActive = false
 end
+CreateThread(function()
+    local resourceName = GetCurrentResourceName()
+    if resourceName ~= "aTextUI" then
+        print("^1[ERROR] The resource name must be 'aTextUI' but is '"..resourceName.."'.^0")
+        print("^3Please rename the folder to 'aTextUI' to avoid issues.^0")
+        StopResource(resourceName)
+    end
+end)
