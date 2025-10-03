@@ -1,24 +1,25 @@
 local resourceName = GetCurrentResourceName()
-local currentVersion = "1.0.0" -- DONT TOUCH THIS
-local githubRawURL = "https://github.com/Alph0xDev/aTextUI/blob/main/version.txt"
+local CURRENT_VERSION = "1.0.0"
+local GITHUB_RAW_URL = "https://raw.githubusercontent.com/Alph0xDev/aTextUI/main/version.txt"
 
 CreateThread(function()
-    PerformHttpRequest(githubRawURL, function(err, text, headers)
-        if not text or err ~= 200 then
-            print("^1["..resourceName.."] Could not check for updates.^0")
+    PerformHttpRequest(GITHUB_RAW_URL, function(err, text, headers)
+        if err ~= 200 or not text then
+            print("["..resourceName.."] Could not check for updates.")
             return
         end
 
         local latestVersion = text:gsub("%s+", "")
-        if latestVersion == currentVersion then
-            print("^2["..resourceName.."] You are running the latest version: "..currentVersion.."^0")
+        if latestVersion == CURRENT_VERSION then
+            print("["..resourceName.."] You are running the latest version: "..CURRENT_VERSION)
         else
-            print("^3["..resourceName.."] Update available!^0")
-            print("^3["..resourceName.."] Current version: "..currentVersion.." - Latest: "..latestVersion.."^0")
-            print("^3["..resourceName.."] Download here: https://github.com/YOUR-GITHUB/REPO^0")
+            print("["..resourceName.."] Update available!")
+            print("["..resourceName.."] Current version: "..CURRENT_VERSION.." - Latest: "..latestVersion)
+            print("["..resourceName.."] Download here: https://github.com/Alph0xDev/aTextUI")
         end
     end, "GET")
 end)
+
 CreateThread(function()
     local resourceName = GetCurrentResourceName()
     if resourceName ~= "aTextUI" then
