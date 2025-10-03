@@ -9,7 +9,7 @@ CreateThread(function()
             return
         end
 
-        local latestVersion = text:gsub("%s+", "")
+        local latestVersion = text:match("^%s*(.-)%s*$")
         if latestVersion == CURRENT_VERSION then
             print("["..resourceName.."] You are running the latest version: "..CURRENT_VERSION)
         else
@@ -21,7 +21,6 @@ CreateThread(function()
 end)
 
 CreateThread(function()
-    local resourceName = GetCurrentResourceName()
     if resourceName ~= "aTextUI" then
         print("^1[ERROR] The resource name must be 'aTextUI' but is '"..resourceName.."'.^0")
         print("^3Please rename the folder to 'aTextUI' to avoid issues.^0")
