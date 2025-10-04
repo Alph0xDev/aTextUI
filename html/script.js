@@ -7,13 +7,12 @@ window.addEventListener('message', function(event) {
         textui.classList.remove('green', 'blue', 'red', 'yellow', 'orange', 'purple');
         if (event.data.style) textui.classList.add(event.data.style);
         setTextUIPosition(event.data.position || "left");
-
-        textui.classList.remove('hidden');
-        if (sound) {
+        if (textui.classList.contains('hidden') && sound) {
             sound.currentTime = 0;
             sound.play();
             sound.volume = 0.6;
         }
+        textui.classList.remove('hidden');
     }
     if (event.data.action === 'hide') {
         textui.classList.add('hidden');
