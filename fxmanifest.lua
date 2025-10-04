@@ -23,3 +23,8 @@ client_scripts {
 server_scripts {
     'server/server.lua'
 }
+
+exports {
+    'ShowTextUI',
+    'HideTextUI'
+}
